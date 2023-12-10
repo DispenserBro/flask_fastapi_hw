@@ -42,7 +42,7 @@ def index():
     for el in news_list:
         # print(el)
         page_content.append(
-            f"""    <div class="card">
+            f"""    <div>
         <p class="article">{el["article"]}</p>
         <p>{el["description"]}</p>
         <p>{el["date"]}</p>

@@ -6,8 +6,6 @@ from copy import deepcopy
 
 app = Flask(__name__)
 fake = Faker('ru-RU')
-Faker.seed(0)
-random.seed(0)
 
 
 def get_items() -> list[dict]:
