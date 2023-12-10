@@ -1,0 +1,1 @@
+from hw_1.task_7 import app
