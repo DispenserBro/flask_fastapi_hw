@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ name }}
+{% endblock title %}
+
+{% block content %}
+<div class="container text-center">
+    <h1>{{ name }}</h1>
+    <h3>
+        Артикул:
+        <small class="text-body-secondary">{{ id }}</small>
+    </h3>
+
+    <div class="card mb-3">
+        <div class="card-header">
+            Описание
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ description }}</h5>
+        </div>
+    </div>
+
+    <a href="/{{ category }}" class="btn btn-primary">В категорию</a>
+</div>
+{% endblock content %}
