@@ -9,7 +9,7 @@
     {% if username %}
     <a href="{{ url_for('logout') }}" class="btn btn-danger">Выйти</a>
     {% else %}
-    <a href="{{ url_for('index') }}" class="btn btn-danger">Войти</a>
+    <a href="{{ url_for('index') }}" class="btn btn-success">Войти</a>
     {% endif %}
 </div>
 {% endblock navbar %}
