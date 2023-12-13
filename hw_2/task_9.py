@@ -13,9 +13,9 @@ app = Flask(__name__)
 
 def get_users_data() -> dict:
     return {
-            'admin@mail.com': ['admin', 'admin'],
-            'user@mail.com': ['12345', 'user'],
-        }
+        'admin@mail.com': ['admin', 'admin'],
+        'user@mail.com': ['12345', 'user'],
+    }
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -44,12 +44,14 @@ def index():
 def logout():
     response = make_response(redirect(url_for('index')))
     response.delete_cookie('username')
+
     return response
 
 
 @app.route('/greet/')
 def greet():
     username = request.cookies.get('username')
+
     return render_template('greet.html', username=username)
 
 

@@ -23,9 +23,7 @@ def index_post():
         result = 'неправильное число'
         color = 'danger'
 
-    return render_template(
-        'forms/square.html', result=result, color=color
-    )
+    return render_template('forms/square.html', result=result, color=color)
 
 
 if __name__ == '__main__':

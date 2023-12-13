@@ -14,7 +14,9 @@ def form():
     if request.method == 'POST':
         name = request.form.get('name')
         flash(f'Привет, {name}!', 'success')
+
         return redirect(url_for('form'))
+
     return render_template('forms/flash.html')
 
 
