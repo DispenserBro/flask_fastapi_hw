@@ -1,4 +1,4 @@
-from hw_3.task_3 import app
+from hw_3.task_8 import app
 
 
 if __name__ == '__main__':
