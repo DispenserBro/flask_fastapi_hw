@@ -509,3 +509,4 @@ Temporary Items
 
 !.gitignore
 !.gitsubmodules
+task_*/
