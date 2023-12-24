@@ -1,0 +1,30 @@
+[
+  {
+    "id": 0,
+    "name": "Highway to Hell",
+    "author": "AC/DC",
+    "description": null,
+    "genre": "Rock"
+  },
+  {
+    "id": 1,
+    "name": "In the End",
+    "author": "Linkin Park",
+    "description": "One of my favourite Linkin Park songs",
+    "genre": "Rock"
+  },
+  {
+    "id": 2,
+    "name": "Go Down, Moses",
+    "author": "Louis Armstrong",
+    "description": "Beatiful jazz song with perfect trumpet solo and vocal",
+    "genre": "Jazz"
+  },
+  {
+    "id": 10,
+    "name": "DELETE",
+    "author": "string",
+    "description": "string",
+    "genre": "string"
+  }
+]
