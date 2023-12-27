@@ -87,7 +87,7 @@ async def delete_task(task_id: int):
 
 
 # Function for marking a task as completed
-@app.post('/tasks/{task_id}/complete', response_model=TaskOut)
+@app.post('/tasks/{task_id}/complete/', response_model=TaskOut)
 async def complete_task(task_id: int):
     task_complete = (
         update(Task).where(Task.id == task_id).values(status=True)
