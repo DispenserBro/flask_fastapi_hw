@@ -3,10 +3,10 @@ import databases
 from fastapi import FastAPI
 from sqlalchemy import create_engine, select, insert, update, delete
 
-from .models_3 import TaskIn, TaskOut, Base, Task
+from .models_4 import TaskIn, TaskOut, Base, Task
 
 
-DATABASE_URL = 'sqlite:///task_3.sqlite'
+DATABASE_URL = 'sqlite:///task_4.sqlite'
 
 db = databases.Database(DATABASE_URL)
 engine = create_engine(DATABASE_URL, connect_args={'check_same_thread': False})
@@ -23,43 +23,29 @@ async def lifespan(app: FastAPI):
     await db.disconnect()
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan, title='Задание 4', version='1.0')
 
 
-# Functions that returns a list of tasks
-@app.get('/', response_model=list[TaskOut])
+# Function that returns a list of tasks
+@app.get('/tasks/', response_model=list[TaskOut])
 async def index():
     tasks = select(Task)
 
     return await db.fetch_all(tasks)
 
 
-@app.get('/completed/', response_model=list[TaskOut])
-async def get_completed():
-    tasks = select(Task).where(Task.status == True)
-
-    return await db.fetch_all(tasks)
-
-
-@app.get('/uncompleted/', response_model=list[TaskOut])
-async def get_uncompleted():
-    tasks = select(Task).where(Task.status == False)
-
-    return await db.fetch_all(tasks)
-
-
 # Functions for edit the whole task information
-@app.post('/tasks/', response_model=TaskIn)
-async def create_task(task: TaskIn):
-    new_task = insert(Task).values(**task.model_dump())
-    await db.execute(new_task)
+@app.get('/tasks/{task_id}/', response_model=TaskOut)
+async def get_task(task_id: int):
+    task = await db.fetch_one(select(Task).where(Task.id == task_id))
 
     return task
 
 
-@app.get('/tasks/{task_id}/', response_model=TaskOut)
-async def get_task(task_id: int):
-    task = await db.fetch_one(select(Task).where(Task.id == task_id))
+@app.post('/tasks/', response_model=TaskIn)
+async def create_task(task: TaskIn):
+    new_task = insert(Task).values(**task.model_dump())
+    await db.execute(new_task)
 
     return task
 
@@ -90,14 +76,3 @@ async def delete_task(task_id: int):
     await db.execute(task_delete)
 
     return {'deleted': True, 'task': task.model_dump()}
-
-
-# Function for marking a task as completed
-@app.post('/tasks/{task_id}/complete/', response_model=TaskOut)
-async def complete_task(task_id: int):
-    task_complete = (
-        update(Task).where(Task.id == task_id).values(status=True)
-    )
-    await db.execute(task_complete)
-    
-    return await db.fetch_one(select(Task).where(Task.id == task_id))
