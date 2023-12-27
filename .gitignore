@@ -510,3 +510,4 @@ Temporary Items
 !.gitignore
 !.gitsubmodules
 task_*/
+*.sqlite
